@@ -1,18 +1,16 @@
-package com.example.sparta_personal4_applemarket.main
+package com.example.sparta_personal4_applemarket.ui.main
 
 import android.content.DialogInterface
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sparta_personal4_applemarket.ListData
-import com.example.sparta_personal4_applemarket.ListFormat
+import com.example.sparta_personal4_applemarket.data.ListData
+import com.example.sparta_personal4_applemarket.data.ListFormat
 import com.example.sparta_personal4_applemarket.R
-import com.example.sparta_personal4_applemarket.SaleDetailActivity
-import com.example.sparta_personal4_applemarket.UserData
+import com.example.sparta_personal4_applemarket.ui.SaleDetailActivity
+import com.example.sparta_personal4_applemarket.data.UserData
 import com.example.sparta_personal4_applemarket.databinding.ItemSalelistBinding
 import java.text.DecimalFormat
 

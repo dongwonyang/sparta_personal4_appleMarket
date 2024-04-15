@@ -1,4 +1,4 @@
-package com.example.sparta_personal4_applemarket
+package com.example.sparta_personal4_applemarket.data
 
 import android.os.Parcel
 import android.os.Parcelable

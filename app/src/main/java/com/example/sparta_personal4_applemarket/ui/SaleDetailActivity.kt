@@ -1,9 +1,12 @@
-package com.example.sparta_personal4_applemarket
+package com.example.sparta_personal4_applemarket.ui
 
 import android.graphics.Paint
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sparta_personal4_applemarket.R
+import com.example.sparta_personal4_applemarket.data.ListData
+import com.example.sparta_personal4_applemarket.data.ListFormat
+import com.example.sparta_personal4_applemarket.data.UserData
 import com.example.sparta_personal4_applemarket.databinding.ActivitySaleDetailBinding
 import java.text.DecimalFormat
 

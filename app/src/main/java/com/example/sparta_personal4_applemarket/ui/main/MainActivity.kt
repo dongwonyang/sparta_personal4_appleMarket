@@ -1,4 +1,4 @@
-package com.example.sparta_personal4_applemarket.main
+package com.example.sparta_personal4_applemarket.ui.main
 
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
@@ -21,10 +21,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sparta_personal4_applemarket.ListData
+import com.example.sparta_personal4_applemarket.data.ListData
 import com.example.sparta_personal4_applemarket.R
 import com.example.sparta_personal4_applemarket.databinding.ActivityMainBinding
 
