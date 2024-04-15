@@ -13,14 +13,15 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sparta_personal4_applemarket.ListData
@@ -76,6 +77,7 @@ class MainActivity : AppCompatActivity() {
                 notification()
                 return true
             }
+
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -132,8 +134,10 @@ class MainActivity : AppCompatActivity() {
                 setWhen(System.currentTimeMillis())
                 setContentTitle("키워드 알림")
                 setContentText("설정한 키워드 알림입니다..")
-                setStyle(NotificationCompat.BigTextStyle()
-                    .bigText("설정한 키워드 알림입니다. 감사합니다."))
+                setStyle(
+                    NotificationCompat.BigTextStyle()
+                        .bigText("설정한 키워드 알림입니다. 감사합니다.")
+                )
                 setLargeIcon(bitmap)
 //            setStyle(NotificationCompat.BigPictureStyle()
 //                    .bigPicture(bitmap)
@@ -146,23 +150,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun floating(){
-        binding.ivFloating.setOnClickListener {
+    private fun floating() {
+        val button = binding.ivFloating
+        button.setOnClickListener {
             binding.rvSaleList.scrollToPosition(0)
+            button.visibility = View.INVISIBLE
         }
 
+        var isButtonVisible = true
+        button.visibility = View.INVISIBLE
         binding.rvSaleList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                val firstVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                val firstVisibleItemPosition =
+                    (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
-                if (firstVisibleItemPosition == 0) {
-                    binding.ivFloating.visibility = View.INVISIBLE
-                } else {
-                    binding.ivFloating.visibility = View.VISIBLE
+                val fadeIn = AnimationUtils.loadAnimation(
+                    binding.root.context,
+                    R.anim.floating_fadein
+                )
+                val fadeOut = AnimationUtils.loadAnimation(
+                    binding.root.context,
+                    R.anim.floating_fadeout
+                )
+
+                if (firstVisibleItemPosition == 0 && !isButtonVisible) {
+                    button.startAnimation(fadeIn)
+                    button.visibility = View.INVISIBLE
+                    isButtonVisible = true
+                } else if (firstVisibleItemPosition != 0 && isButtonVisible) {
+                    button.startAnimation(fadeOut)
+                    button.visibility = View.VISIBLE
+                    isButtonVisible = false
                 }
             }
         })
+
     }
 }
