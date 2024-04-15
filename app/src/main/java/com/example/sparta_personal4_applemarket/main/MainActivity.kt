@@ -16,11 +16,13 @@ import android.provider.Settings
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.sparta_personal4_applemarket.ListData
 import com.example.sparta_personal4_applemarket.R
 import com.example.sparta_personal4_applemarket.databinding.ActivityMainBinding
@@ -37,6 +39,8 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.tbMain)
         supportActionBar?.setDisplayShowTitleEnabled(true)
+
+        floating()
     }
 
 
@@ -140,5 +144,25 @@ class MainActivity : AppCompatActivity() {
 
             manager.notify(11, builder.build())
         }
+    }
+
+    private fun floating(){
+        binding.ivFloating.setOnClickListener {
+            binding.rvSaleList.scrollToPosition(0)
+        }
+
+        binding.rvSaleList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val firstVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+
+                if (firstVisibleItemPosition == 0) {
+                    binding.ivFloating.visibility = View.INVISIBLE
+                } else {
+                    binding.ivFloating.visibility = View.VISIBLE
+                }
+            }
+        })
     }
 }
