@@ -22,6 +22,9 @@ class SaleDetailActivity : AppCompatActivity() {
         val data = intent.getParcelableExtra<ListFormat>("data")
 
         data?.let { getUi(it) }
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
     }
 
     fun getUi(data: ListFormat){
