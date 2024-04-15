@@ -44,6 +44,10 @@ class MainActivity : AppCompatActivity() {
         floating()
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        binding.rvSaleList.adapter?.notifyDataSetChanged()
+    }
 
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
